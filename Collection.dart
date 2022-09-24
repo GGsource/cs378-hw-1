@@ -1,11 +1,14 @@
 import 'LinkedList.dart';
 
 abstract class Collection<T extends Comparable> extends Object {
-  Collection<T> add(T val); //Returns the receiver with new addition
+  Collection<T> add(T givenVal); //Returns the receiver with new addition
   Collection<T> copy(); //Returns a copy of the receiver
   T operator [](int index);
   void printString();
   int _size = 0;
+
+  //Collection Constructor
+  Collection() {}
 
   //mapC -
   //Takes the current collection and returns a linkedlist containing each
