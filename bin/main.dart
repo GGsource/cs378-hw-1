@@ -1,4 +1,4 @@
-import 'LinkedList.dart';
+import 'package:CustomLinkedList/LinkedList.dart';
 
 void main(List<String> args) {
   LinkedList<int> numberList = new LinkedList();

@@ -1,5 +1,5 @@
-import '../LinkedList.dart';
-
+import 'package:CustomLinkedList/Collection.dart';
+import 'package:CustomLinkedList/LinkedList.dart';
 import 'package:test/test.dart';
 
 void main(List<String> args) {
@@ -48,7 +48,7 @@ void main(List<String> args) {
   test("Copy() returned list is same size & values as original", () {
     int ndx = 0;
     numberList.add(1).add(2).add(3);
-    LinkedList<int> dupeList = numberList.copy();
+    Collection<int> dupeList = numberList.copy();
     for (var item in dupeList) {
       expect(numberList[ndx++], item);
     }
@@ -57,7 +57,7 @@ void main(List<String> args) {
   test("Copy() returned list is not tethered to original when changes are made",
       () {
     numberList.add(17).add(18).add(19);
-    LinkedList<int> dupeList = numberList.copy();
+    Collection<int> dupeList = numberList.copy();
     dupeList.add(20);
     expect(numberList.getSize() + 1, dupeList.getSize());
   });

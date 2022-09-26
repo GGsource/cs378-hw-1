@@ -1,4 +1,4 @@
-name: DartTesting
+name: CustomLinkedList
 
 dev_dependencies:
   test:

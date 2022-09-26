@@ -272,13 +272,13 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "DartTesting",
+      "name": "CustomLinkedList",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-09-26T15:49:52.920640Z",
+  "generated": "2022-09-26T21:02:18.367823Z",
   "generator": "pub",
   "generatorVersion": "2.18.1"
 }

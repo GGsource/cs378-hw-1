@@ -1,16 +1,14 @@
-import 'dart:io';
-
 import 'Collection.dart';
 
-class LinkedList<T extends Comparable> extends Collection {
-  _LinkedNode<Comparable>? head;
-  _LinkedNode<Comparable>? tail;
+class LinkedList<T extends Comparable> extends Collection<T> {
+  _LinkedNode<T>? head;
+  _LinkedNode<T>? tail;
 
   // DONE: implement add
   @override
-  Collection<Comparable> add(Comparable givenVal) {
+  Collection<T> add(T givenVal) {
     //Create new node to attach
-    _LinkedNode newNode = new _LinkedNode(givenVal);
+    _LinkedNode<T> newNode = new _LinkedNode(givenVal);
     //Update head and tail
     if (head == null) {
       //If head is null then this must be the first item
@@ -28,7 +26,7 @@ class LinkedList<T extends Comparable> extends Collection {
   }
 
   @override
-  LinkedList<T> copy() {
+  Collection<T> copy() {
     // DONE: implement copy
     LinkedList<T> copyList = new LinkedList<T>();
     for (var element in this) {
@@ -45,7 +43,7 @@ class LinkedList<T extends Comparable> extends Collection {
       throw IndexError(index, this);
     }
     int ndx = 0;
-    _LinkedNode<Comparable>? traverser = head;
+    _LinkedNode<T>? traverser = head;
     while (ndx < index) {
       traverser = traverser?.next;
       ndx += 1;
@@ -56,16 +54,17 @@ class LinkedList<T extends Comparable> extends Collection {
   @override
   void printString() {
     // TODO: implement printString
-    stdout.write("-[");
-    _LinkedNode<Comparable>? traverser = head;
+    String printString = "-[";
+    _LinkedNode<T>? traverser = head;
     while (traverser != null) {
-      stdout.write("${traverser.val}");
+      printString += "${traverser.val}";
       if (traverser.next != null) {
-        stdout.write(", ");
+        printString += ", ";
       }
       traverser = traverser.next;
     }
-    stdout.write("]-\n");
+    printString += "]-";
+    print(printString);
   }
 
   @override
@@ -73,7 +72,7 @@ class LinkedList<T extends Comparable> extends Collection {
   Iterator get iterator => _LLIterator(head);
 }
 
-class _LinkedNode<T extends Comparable> {
+class _LinkedNode<T> {
   T? val;
   _LinkedNode<T>? next;
 
@@ -82,7 +81,7 @@ class _LinkedNode<T extends Comparable> {
   }
 }
 
-class _LLIterator<T extends Comparable> implements Iterator<T> {
+class _LLIterator<T> implements Iterator<T> {
   int ndx = 0;
   _LinkedNode<T>? cur;
 
