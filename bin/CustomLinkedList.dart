@@ -14,8 +14,13 @@ void main(List<String> args) {
   for (var it = numberList.iterator; it.moveNext();) {
     print(it.current);
   }
-  print("Now attempting foreach:");
+  print("Now attempting for-in:");
   for (var element in numberList) {
     print(element);
   }
+
+  print("Now attempting list.forEach");
+  numberList.forEach((element) {
+    print(element);
+  });
 }
