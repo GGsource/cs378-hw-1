@@ -10,21 +10,29 @@ void main(List<String> args) {
   }));
 
   test('Empty list is empty', () {
-    expect(0, numberList.getSize());
+    expect(numberList.getSize(), 0);
   });
 
   test("Add() method adds item", () {
     numberList.add(50);
-    expect(1, numberList.getSize());
-    expect(50, numberList[0]);
+    expect(numberList.getSize(), 1);
+    expect(numberList[0], 50);
   });
 
   test("Add() method can be cascaded", () {
     numberList.add(10).add(20).add(30);
-    expect(3, numberList.getSize());
-    expect(10, numberList[0]);
-    expect(20, numberList[1]);
-    expect(30, numberList[2]);
+    expect(numberList.getSize(), 3);
+    expect(numberList[0], 10);
+    expect(numberList[1], 20);
+    expect(numberList[2], 30);
+    numberList.add(40)
+      ..add(50)
+      ..add(60)
+      ..add(70);
+    expect(numberList[3], 40);
+    expect(numberList[4], 50);
+    expect(numberList[5], 60);
+    expect(numberList[6], 70);
   });
 
   test("Can use iterator to traverse", () {
@@ -32,7 +40,7 @@ void main(List<String> args) {
     var expectedVals = [100, 200, 300];
     int ndx = 0;
     for (var it = numberList.iterator; it.moveNext();) {
-      expect(expectedVals[ndx++], it.current);
+      expect(it.current, expectedVals[ndx++]);
     }
   });
 
@@ -41,7 +49,7 @@ void main(List<String> args) {
     var expectedVals = [300, 200, 100];
     int ndx = 0;
     for (var item in numberList) {
-      expect(expectedVals[ndx++], item);
+      expect(item, expectedVals[ndx++]);
     }
   });
 
@@ -50,7 +58,7 @@ void main(List<String> args) {
     numberList.add(1).add(2).add(3);
     Collection<int> dupeList = numberList.copy();
     for (var item in dupeList) {
-      expect(numberList[ndx++], item);
+      expect(item, numberList[ndx++]);
     }
   });
 
@@ -60,5 +68,10 @@ void main(List<String> args) {
     Collection<int> dupeList = numberList.copy();
     dupeList.add(20);
     expect(numberList.getSize() + 1, dupeList.getSize());
+  });
+
+  test("operator[] throws error if index outside bounds", () {
+    numberList.add(3).add(6).add(9);
+    expect(numberList[3], IndexError);
   });
 }
