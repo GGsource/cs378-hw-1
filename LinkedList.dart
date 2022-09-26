@@ -28,19 +28,29 @@ class LinkedList<T extends Comparable> extends Collection {
   }
 
   @override
-  Collection<T> copy() {
-    // TODO: implement copy
-    LinkedList<T> copyList = new LinkedList();
+  LinkedList<T> copy() {
+    // DONE: implement copy
+    LinkedList<T> copyList = new LinkedList<T>();
     for (var element in this) {
       copyList.add(element);
     }
-    return copyList as Collection<T>;
+    return copyList;
   }
 
   @override
   T operator [](int index) {
-    // TODO: implement []
-    throw UnimplementedError();
+    // DONE: implement []
+    if (index >= this.getSize()) {
+      //If value is outside our size, throw error
+      throw IndexError(index, this);
+    }
+    int ndx = 0;
+    _LinkedNode<Comparable>? traverser = head;
+    while (ndx < index) {
+      traverser = traverser?.next;
+      ndx += 1;
+    }
+    return traverser?.val as T;
   }
 
   @override
