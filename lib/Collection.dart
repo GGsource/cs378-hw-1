@@ -5,10 +5,12 @@ abstract class Collection<T extends Comparable> extends Iterable {
   Collection<T> copy(); //Returns a copy of the receiver
   T operator [](int index);
   void printString();
-  int _size = 0;
+  late int _size;
 
   //Collection Constructor
-  Collection() {}
+  Collection() {
+    _size = 0;
+  }
 
   //mapC -
   //Takes the current collection and returns a linkedlist containing each
