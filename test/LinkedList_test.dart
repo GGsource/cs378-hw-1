@@ -2,7 +2,7 @@ import 'package:CustomLinkedList/Collection.dart';
 import 'package:CustomLinkedList/LinkedList.dart';
 import 'package:test/test.dart';
 
-void main(List<String> args) {
+void main() {
   late LinkedList<int> numberList;
 
   setUp((() {
@@ -70,8 +70,9 @@ void main(List<String> args) {
     expect(numberList.getSize() + 1, dupeList.getSize());
   });
 
-  test("operator[] throws error if index outside bounds", () {
+  test("operator[] throws Exception if index outside bounds", () {
     numberList.add(3).add(6).add(9);
-    expect(numberList[3], IndexError);
+    print(numberList.getSize());
+    expect(() => numberList[3], throwsException);
   });
 }

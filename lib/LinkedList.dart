@@ -49,7 +49,7 @@ class LinkedList<T extends Comparable> extends Collection<T> {
     // DONE: implement []
     if (index >= this.getSize()) {
       //If value is outside our size, throw error
-      throw IndexError(index, this);
+      throw Exception("index is out of bounds...");
     }
     int ndx = 0;
     _LinkedNode<T>? traverser = head;
