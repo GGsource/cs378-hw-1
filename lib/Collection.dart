@@ -1,9 +1,10 @@
 import 'LinkedList.dart';
 
 abstract class Collection<T extends Comparable> extends Iterable {
-  Collection<T> add(T givenVal); //Returns the receiver with new addition
+  Collection<T> add(
+      {required T givenVal}); //Returns the receiver with new addition
   Collection<T> copy(); //Returns a copy of the receiver
-  T operator [](int index);
+  T operator []({required int index});
   void printString();
   late int _size;
 
@@ -15,19 +16,19 @@ abstract class Collection<T extends Comparable> extends Iterable {
   //mapC -
   //Takes the current collection and returns a linkedlist containing each
   //member of the collection after having the given function applied to them
-  LinkedList<T> mapC(T Function(T arg) fn) {
+  LinkedList<T> mapC({required T Function({required T arg}) fn}) {
     LinkedList<T> returnList = new LinkedList<T>();
     for (int i = 0; i < _size; i++) {
       //Takes value of collection at i and applies fn to it
       //then saves result into returnList
-      returnList.add(fn(this[i]));
+      returnList.add(givenVal: fn(arg: this[i]));
     }
     return returnList;
   }
 
   //containsC -
   //Takes in arbitrary Object and checks whether it is inside the receiver collection
-  bool containsC(Object obj) {
+  bool containsC({required Object obj}) {
     for (int i = 0; i < _size; i++) {
       if (this[i] == obj) {
         return true;
@@ -38,7 +39,7 @@ abstract class Collection<T extends Comparable> extends Iterable {
 
   //equals -
   //Takes in arbitrary Object and checks whether it is equal to the receiver collection
-  bool equals(Object obj) {
+  bool equals({required Object obj}) {
     //First check received item's type - if its not the same as ours, return false
     if (this.runtimeType != obj.runtimeType) return false;
     //Now we know its a list of our type, cast as such
