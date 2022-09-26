@@ -9,10 +9,7 @@ class LinkedList<T extends Comparable> extends Collection {
   // DONE: implement add
   @override
   Collection<Comparable> add(Comparable givenVal) {
-    //Create Traverser node in order to leave head unaffected
-    print("adding $givenVal to list...");
-    print("head is currently ${head?.val}");
-    //Attach a new node with our given value at the end
+    //Create new node to attach
     _LinkedNode newNode = new _LinkedNode(givenVal);
     //Update head and tail
     if (head == null) {
@@ -33,7 +30,11 @@ class LinkedList<T extends Comparable> extends Collection {
   @override
   Collection<T> copy() {
     // TODO: implement copy
-    throw UnimplementedError();
+    LinkedList<T> copyList = new LinkedList();
+    for (var element in this) {
+      copyList.add(element);
+    }
+    return copyList as Collection<T>;
   }
 
   @override
@@ -56,6 +57,10 @@ class LinkedList<T extends Comparable> extends Collection {
     }
     stdout.write("]-\n");
   }
+
+  @override
+  // DONE: implement iterator
+  Iterator get iterator => _LLIterator(head);
 }
 
 class _LinkedNode<T extends Comparable> {
@@ -64,5 +69,28 @@ class _LinkedNode<T extends Comparable> {
 
   _LinkedNode(T givenVal) {
     val = givenVal;
+  }
+}
+
+class _LLIterator<T extends Comparable> implements Iterator<T> {
+  int ndx = 0;
+  _LinkedNode<T>? cur;
+
+  _LLIterator(_LinkedNode<T>? givenHead) {
+    cur = givenHead;
+  }
+
+  @override
+  // DONE: implement current
+  T get current {
+    T? curVal = cur?.val;
+    cur = cur?.next;
+    return curVal as T;
+  }
+
+  @override
+  bool moveNext() {
+    // DONE: implement moveNext
+    return cur != null;
   }
 }

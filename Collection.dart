@@ -1,6 +1,6 @@
 import 'LinkedList.dart';
 
-abstract class Collection<T extends Comparable> extends Object {
+abstract class Collection<T extends Comparable> extends Iterable {
   Collection<T> add(T givenVal); //Returns the receiver with new addition
   Collection<T> copy(); //Returns a copy of the receiver
   T operator [](int index);
