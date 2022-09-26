@@ -45,7 +45,7 @@ class LinkedList<T extends Comparable> extends Collection<T> {
   //Dictates behavior for when linklist[index] is used. Returns the value in
   //the linked list at the specified index, or throws error if out of bounds.
   @override
-  T operator []({required int index}) {
+  T operator [](int index) {
     // DONE: implement []
     if (index >= this.getSize()) {
       //If value is outside our size, throw error
