@@ -72,7 +72,6 @@ void main() {
 
   test("operator[] throws Exception if index outside bounds", () {
     numberList.add(3).add(6).add(9);
-    print(numberList.getSize());
     expect(() => numberList[3], throwsException);
   });
 }
