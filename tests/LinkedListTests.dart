@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import '../LinkedList.dart';
 
 import 'package:test/test.dart';
@@ -18,16 +16,15 @@ void main(List<String> args) {
   test("Add() method adds item", () {
     numberList.add(50);
     expect(1, numberList.getSize());
-    //FIXME: []operator not functional yet
-    //expect(50, numberList[0]);
+    expect(50, numberList[0]);
   });
 
   test("Add() method can be cascaded", () {
     numberList.add(10).add(20).add(30);
     expect(3, numberList.getSize());
-    // expect(10, numberList[0]);
-    // expect(20, numberList[1]);
-    // expect(30, numberList[2]);
+    expect(10, numberList[0]);
+    expect(20, numberList[1]);
+    expect(30, numberList[2]);
   });
 
   test("Can use iterator to traverse", () {
@@ -46,5 +43,22 @@ void main(List<String> args) {
     for (var item in numberList) {
       expect(expectedVals[ndx++], item);
     }
+  });
+
+  test("Copy() returned list is same size & values as original", () {
+    int ndx = 0;
+    numberList.add(1).add(2).add(3);
+    LinkedList<int> dupeList = numberList.copy();
+    for (var item in dupeList) {
+      expect(numberList[ndx++], item);
+    }
+  });
+
+  test("Copy() returned list is not tethered to original when changes are made",
+      () {
+    numberList.add(17).add(18).add(19);
+    LinkedList<int> dupeList = numberList.copy();
+    dupeList.add(20);
+    expect(numberList.getSize() + 1, dupeList.getSize());
   });
 }
