@@ -53,8 +53,8 @@ class LinkedList<T extends Comparable> extends Collection<T> {
 
   @override
   void printString() {
-    // TODO: implement printString
-    String printString = "-[";
+    // DONE: implement printString
+    String printString = "LinkedList: [";
     _LinkedNode<T>? traverser = head;
     while (traverser != null) {
       printString += "${traverser.val}";
@@ -63,7 +63,7 @@ class LinkedList<T extends Comparable> extends Collection<T> {
       }
       traverser = traverser.next;
     }
-    printString += "]-";
+    printString += "]";
     print(printString);
   }
 
