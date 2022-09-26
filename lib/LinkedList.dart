@@ -4,9 +4,12 @@ class LinkedList<T extends Comparable> extends Collection<T> {
   _LinkedNode<T>? head;
   _LinkedNode<T>? tail;
 
-  // DONE: implement add
+  //add -
+  //Adds the given value to the linkedlist and returns the linkedlist.
+  //Returning the same linkedlist allows for cascading calls i.e. ll.add(3).add(4);
   @override
   Collection<T> add(T givenVal) {
+    // DONE: implement add
     //Create new node to attach
     _LinkedNode<T> newNode = new _LinkedNode(givenVal);
     //Update head and tail
@@ -25,6 +28,9 @@ class LinkedList<T extends Comparable> extends Collection<T> {
     return this;
   }
 
+  //copy -
+  //Creates a new linkedlist and copies all the old list's values over.
+  //Returns the new copy, which has the same values but is adistinct instance.
   @override
   Collection<T> copy() {
     // DONE: implement copy
@@ -35,6 +41,9 @@ class LinkedList<T extends Comparable> extends Collection<T> {
     return copyList;
   }
 
+  // operator[] -
+  //Dictates behavior for when linklist[index] is used. Returns the value in
+  //the linked list at the specified index, or throws error if out of bounds.
   @override
   T operator [](int index) {
     // DONE: implement []
@@ -51,6 +60,9 @@ class LinkedList<T extends Comparable> extends Collection<T> {
     return traverser?.val as T;
   }
 
+  //printString -
+  //Prints out all the values of the linkedlist in order, inside brackets
+  //with comma separation between each. Looks nice.
   @override
   void printString() {
     // DONE: implement printString
@@ -67,11 +79,16 @@ class LinkedList<T extends Comparable> extends Collection<T> {
     print(printString);
   }
 
+  //get iterator -
+  //Returns an instance of the LinkedList iterator which knows how to traverse
+  //the linkedlist structure. For use in foreach type calls.
   @override
   // DONE: implement iterator
   Iterator get iterator => _LLIterator(head);
 }
 
+// _LinkedNode -
+//Subclass for each node. Contains value and points to next node
 class _LinkedNode<T> {
   T? val;
   _LinkedNode<T>? next;
@@ -81,6 +98,8 @@ class _LinkedNode<T> {
   }
 }
 
+//_LLIterator -
+//Subclass for LinkerList's iterator. Traverses the structure
 class _LLIterator<T> implements Iterator<T> {
   int ndx = 0;
   _LinkedNode<T>? cur;
