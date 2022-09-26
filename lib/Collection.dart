@@ -39,12 +39,18 @@ abstract class Collection<T extends Comparable> extends Iterable {
   //equals -
   //Takes in arbitrary Object and checks whether it is equal to the receiver collection
   bool equals(Object obj) {
-    Collection<T> objCollection = obj as Collection<T>;
+    //First check received item's type - if its not the same as ours, return false
     if (this.runtimeType != obj.runtimeType) return false;
+    //Now we know its a list of our type, cast as such
+    Collection<T> objCollection = obj as Collection<T>;
+    //Now check if the sizes match up before traversing, if not return false
+    if (this.getSize() != objCollection.getSize()) return false;
+    //Theyre the same type and size, all thats left is to check each value
     for (int i = 0; i < _size; i++) {
-      //FIXME: Not null safe?
-      if (this[i] == objCollection[i]) return false;
+      //If any value is different, return false
+      if (this[i] != objCollection[i]) return false;
     }
+    //Everything was the same, these are logically equivalent!
     return true;
   }
 
