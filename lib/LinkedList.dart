@@ -8,10 +8,10 @@ class LinkedList<T extends Comparable> extends Collection<T> {
   //Adds the given value to the linkedlist and returns the linkedlist.
   //Returning the same linkedlist allows for cascading calls i.e. ll.add(3).add(4);
   @override
-  Collection<T> add(T givenVal) {
+  Collection<T> add({required T givenVal}) {
     // DONE: implement add
     //Create new node to attach
-    _LinkedNode<T> newNode = new _LinkedNode(givenVal);
+    _LinkedNode<T> newNode = new _LinkedNode(nodeVal: givenVal);
     //Update head and tail
     if (head == null) {
       //If head is null then this must be the first item
@@ -36,7 +36,7 @@ class LinkedList<T extends Comparable> extends Collection<T> {
     // DONE: implement copy
     LinkedList<T> copyList = new LinkedList<T>();
     for (var element in this) {
-      copyList.add(element);
+      copyList.add(givenVal: element);
     }
     return copyList;
   }
@@ -45,7 +45,7 @@ class LinkedList<T extends Comparable> extends Collection<T> {
   //Dictates behavior for when linklist[index] is used. Returns the value in
   //the linked list at the specified index, or throws error if out of bounds.
   @override
-  T operator [](int index) {
+  T operator []({required int index}) {
     // DONE: implement []
     if (index >= this.getSize()) {
       //If value is outside our size, throw error
@@ -84,7 +84,7 @@ class LinkedList<T extends Comparable> extends Collection<T> {
   //the linkedlist structure. For use in foreach type calls.
   @override
   // DONE: implement iterator
-  Iterator get iterator => _LLIterator(head);
+  Iterator get iterator => _LLIterator(givenHead: head);
 }
 
 // _LinkedNode -
@@ -93,8 +93,8 @@ class _LinkedNode<T> {
   T? val;
   _LinkedNode<T>? next;
 
-  _LinkedNode(T givenVal) {
-    val = givenVal;
+  _LinkedNode({required T nodeVal}) {
+    val = nodeVal;
   }
 }
 
@@ -104,7 +104,7 @@ class _LLIterator<T> implements Iterator<T> {
   int ndx = 0;
   _LinkedNode<T>? cur;
 
-  _LLIterator(_LinkedNode<T>? givenHead) {
+  _LLIterator({required _LinkedNode<T>? givenHead}) {
     cur = givenHead;
   }
 

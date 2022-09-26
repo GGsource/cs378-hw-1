@@ -5,10 +5,10 @@ void main(List<String> args) {
   print("Empty LinkedList:");
   numberList.printString();
   print("LinkedList after adding 1 item");
-  numberList.add(200);
+  numberList.add(givenVal: 200);
   numberList.printString();
   print("Linked list after having 4 items");
-  numberList.add(10).add(20).add(5);
+  numberList.add(givenVal: 10).add(givenVal: 20).add(givenVal: 5);
   numberList.printString();
   print("Now attempting to iterate through list:");
   for (var it = numberList.iterator; it.moveNext();) {
