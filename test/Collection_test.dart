@@ -1,4 +1,4 @@
-import 'package:CustomLinkedList/LinkedList.dart';
+import 'package:cs378_hw_1/LinkedList.dart';
 import 'package:test/test.dart';
 
 void main() {
