@@ -10,6 +10,10 @@ class LinkedList<T extends Comparable> extends Collection<T> {
   @override
   Collection<T> add({required T givenVal}) {
     // DONE: implement add
+    //Duplicates not allowed! Check first
+    if (this.containsC(obj: givenVal)) {
+      return this;
+    }
     //Create new node to attach
     _LinkedNode<T> newNode = new _LinkedNode(nodeVal: givenVal);
     //Update head and tail
